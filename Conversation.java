@@ -20,12 +20,13 @@ class Conversation {
     System.out.println(howManyRounds);
     transcript.add(howManyRounds); 
     int numOfRounds = input.nextInt();
+    input.nextLine(); //clear out
     String rounds = String.valueOf(numOfRounds);
     transcript.add(rounds); 
 
     String question = "Hi, what's on your mind?";
-    String answer = input.nextLine();
-    transcript.add(answer);
+    // String answer = input.nextLine();
+  
     System.out.println(question);
     transcript.add(question);
     
@@ -37,19 +38,26 @@ class Conversation {
     
     // int r = 0; 
     String chat = "";
-    transcript.add(chat);
     
    for (int a=0; a < numOfRounds; a++){
     
     String answer2 = input.nextLine();
+    transcript.add(answer2);
     
+    chat = "";
+    //
     String[] split = answer2.split(" ");
     String[] mirror = {"I", "me", "you", "my", "your", "am", "are"};
     String[] replace = {"you", "you", "me", "your", "my", "are", "am"};
-    
-    // 
-      for (int b=0; b < split.length; b++){
+    String[] canned = {"Mhmm.", "Sounds good!", "That's so interesting.", "Tell me more.", "Wow!"};
+    Random random = new Random();
+    int randomIndex = random.nextInt(canned.length);
+    String randomElement = canned[randomIndex];
+
+      
+    for (int b=0; b < split.length; b++){
         String currentWord = "";
+        
       for (int c=0; c < mirror.length; c++){
         if (split[b].equalsIgnoreCase(mirror[c])){
             iterator++;
@@ -62,22 +70,35 @@ class Conversation {
           chat += currentWord + " "; 
         }
       
-      if (iterator > 0) {
-        System.out.println(chat); 
-        transcript.add(chat); 
-      }
-      if (iterator <= 0){
-        String[] canned = {"Mhmm.", "Sounds good!", "That's so interesting.", "Tell me more.", "Wow!"};
-        Random random = new Random();
-        int randomIndex = random.nextInt(canned.length);
-        String randomElement = canned[randomIndex];
-        System.out.println(randomElement);
-        transcript.add(randomElement);
+      // if (iterator > 0) {
+        
+      //   transcript.add(chat); 
+      // }
+      // if (iterator <= 0){
+      //   String[] canned = {"Mhmm.", "Sounds good!", "That's so interesting.", "Tell me more.", "Wow!"};
+      //   Random random = new Random();
+      //   int randomIndex = random.nextInt(canned.length);
+      //   String randomElement = canned[randomIndex];
+      //   System.out.println(randomElement); 
+      //   transcript.add(randomElement);
+        
 
     }
+    if (iterator > 0) {
+      System.out.println(chat);
+      transcript.add(chat); 
+    }
+    if (iterator <= 0){
+      // String[] canned = {"Mhmm.", "Sounds good!", "That's so interesting.", "Tell me more.", "Wow!"};
+      // Random random = new Random();
+      // int randomIndex = random.nextInt(canned.length);
+      // String randomElement = canned[randomIndex];
+      System.out.println(randomElement); 
+      transcript.add(randomElement);
     
   }
-    
+  
+  
             
     }
     input.close();
@@ -88,7 +109,7 @@ class Conversation {
           System.out.println("Transcript: ");
           for (int y =0; y < transcript.size(); y++){
             String finalTranscript = " " + transcript.get(y);
-            System.out.print(finalTranscript);}
+            System.out.println(finalTranscript);}
   
    }
     
@@ -109,8 +130,8 @@ class Conversation {
   //           String finalTranscript = " " + transcript.get(y);
   //           System.out.print(finalTranscript);}
   //         }
-  
   }
+  
 
 
     
